@@ -55,7 +55,8 @@ describe DynamicArray do
       expect(arr[0]).to eq(0)
       expect(arr[1]).to eq(1)
       expect(arr[2]).to eq(2)
-      expect(arr[3]).to be_nil
+       expect(arr[3]).to be_nil
+      #expect(arr[3]).to raise_error("Overflow error")
     end
   end
 

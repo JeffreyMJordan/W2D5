@@ -1,11 +1,13 @@
+require 'byebug'
 class StaticArray
   def initialize(capacity)
     @store = Array.new(capacity)
   end
 
-  def [](i)
-    validate!(i)
-    @store[i]
+  def [](idx)
+
+    validate!(idx)
+    @store[idx]
   end
 
   def []=(i, val)
@@ -33,9 +35,11 @@ class DynamicArray
   end
 
   def [](i)
+    @store[i]
   end
 
   def []=(i, val)
+    @store[i] = val
   end
 
   def capacity
@@ -46,9 +50,24 @@ class DynamicArray
   end
 
   def push(val)
+    @store[@count] = val
+    @count += 1
   end
 
   def unshift(val)
+
+    new_arr = StaticArray.new(@store.length)
+    new_arr[0] = val
+    idx = 0
+    while idx<@store.length
+      item = @store[idx]
+      if idx+1 < @store.length
+        new_arr[idx+1] = item
+      end
+      idx += 1
+    end
+    @count += 1
+    @store = new_arr
   end
 
   def pop
